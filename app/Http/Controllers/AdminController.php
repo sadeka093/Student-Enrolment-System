@@ -3,17 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
 
 use Illuminate\Support\Facades\Redirect;
+use DB;
 use Session;
-session_start();
+Session_start();
 class AdminController extends Controller
 { 
+
+  public function viewprofile()
+  {
+     return view('admin.view');
+  }
+
+  public function setting()
+  {
+     return view('admin.settings');
+  }
+
 	public function admin_dashboard()
 	{
 		 return view('admin.dashboard');
 	}
+
+    //logout
+    public function logout()
+    {
+       Session::put('admin_name',null);
+       Session::put('admin_id',null);
+
+       return Redirect::to('/backend');
+    }
+
    public function login_dashboard(Request $request)
    {
   /* return view ('admin.dashboard');*/
