@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
 use Illuminate\Http\Request;
 use App\Models\student;
 use Illuminate\Support\Facades\Redirect;
@@ -27,7 +27,8 @@ class AllstudentsController extends Controller
     	
       return view('admin.studentedit')->with('student',$student);
     	
-    }
+    } 
+
     public function updatestudent(Request $request,$student_id){
     	/*if($request->hasFile('student_image')){
 			$image= $request->file('student_image');
@@ -54,7 +55,7 @@ class AllstudentsController extends Controller
          
 
        ]);
-
+       
 
        
 
@@ -65,4 +66,34 @@ class AllstudentsController extends Controller
      return Redirect::to('/allstudent');
     	
     }
+
+    public function student_own_update(Request $request){
+      
+$student_id=Session::get('student_id');
+       $device = DB::table('student_tbl')
+       ->where('student_id', $student_id)
+       ->update([
+        
+          'student_phone' => $request->student_phone,
+          'student_address' => $request->student_address,
+          'student_password' => $request->student_password,
+          
+
+         
+
+       ]);
+       
+
+       
+
+
+
+      
+      
+     return Redirect::to('/student_profile');
+      
+    }
+
+
+
 }

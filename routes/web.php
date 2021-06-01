@@ -24,6 +24,7 @@ use App\Http\Controllers\TeacherController;
 */
 //logout
 Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/student_logout', [AdminController::class, 'student_logout']);
 
 Route::get('/', function () {
     return view('student_login');
@@ -35,9 +36,16 @@ Route::get('/backend', function () {
 
 
 Route::post('/adminlogin', [AdminController::class, 'login_dashboard']);
+Route::post('/studentlogin', [AdminController::class, 'student_login_dashboard']);
+
 Route::get('/admin_dashboard', [AdminController::class, 'admin_dashboard']);
+Route::get('/student_dashboard', [AdminController::class, 'student_dashboard']);
+
 Route::get('/viewprofile', [AdminController::class, 'viewprofile']);
 Route::get('/setting', [AdminController::class, 'setting']);
+Route::get('/student_setting', [AdminController::class, 'student_setting']);
+
+Route::get('/student_profile', [AddstudentsController::class, 'studentprofile']);
 
 //add student
 Route::get('/addstudent', [AddstudentsController::class, 'addstudent']);
@@ -48,7 +56,8 @@ Route::get('/allstudent', [AllstudentsController::class, 'allstudent']);
 Route::get('/studentview/{student_id}', [AllstudentsController::class, 'studentview']);
 
 Route::get('/studentedit/{student_id}', [AllstudentsController::class, 'studentedit']);
-Route::post('/updatestudent/{student_id}', [AllstudentsController::class, 'updatestudent'])->name('admin.updatestudent');;
+Route::post('/updatestudent/{student_id}', [AllstudentsController::class, 'updatestudent'])->name('admin.updatestudent');
+Route::post('/student_own_update', [AllstudentsController::class, 'student_own_update']);
 
 Route::get('/tutionfee', [TutionController::class, 'tution']);
 Route::get('/cse', [CSEController::class, 'cse']);

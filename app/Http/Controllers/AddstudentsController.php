@@ -62,4 +62,18 @@ class AddstudentsController extends Controller
 
 
 	}
+	public function studentprofile()
+	{
+		$student_id=Session::get('student_id');
+		$student_profile=DB::table('student_tbl')
+		->select('*')
+		->where('student_id',$student_id)
+		->first();
+		
+	/*	echo "</pre>";
+		print_r($student_profile);
+		echo"</pre>";*/
+	
+			return view('student.student_view',compact('student_profile'));
+	}
 } 
